@@ -1,0 +1,45 @@
+{
+  "name": "Getting Started Example",
+  "description": "Build an Extension!",
+  "version": "1.0",
+  "manifest_version": 3,
+  "options_page": "./html/options.html",
+  "permissions": [
+    "activeTab",
+    "cookies",
+    "debugger",             //chrome.debugger 
+    "downloads",            //chrome.downloads
+    "nativeMessaging",
+    "scripting",            //chrome.scripting 
+    "storage",              //chrome.storage
+    "system.storage",       //chrome.system.storage
+    "tabs"                //chrome.tabs and chrome.windows
+//    "webNavigation",        //chrome.webNavigation 
+//    "webRequest",         //chrome.webRequest
+//    "webRequestBlocking", //chrome.webRequest
+  ],
+  "optional_permissions": [
+  ],
+  "host_permissions": [
+    "http://www.blogger.com/",
+    "http://*.google.com/"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "./html/popup.html",
+    "default_icon": {
+      "16": "/images/get_started16.png",
+      "32": "/images/get_started32.png",
+      "48": "/images/get_started48.png",
+      "128": "/images/get_started128.png"
+    }
+  },
+  "icons": {
+    "16": "/icons/png_file16.png",
+    "32": "/icons/png_file32.png",
+    "48": "/icons/png_file48.png",
+    "128": "/icons/png_file128.png"
+  }
+}
