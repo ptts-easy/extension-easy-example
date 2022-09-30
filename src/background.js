@@ -1,8 +1,16 @@
-let color = '#3aa757';
+
+function installDataset() {
+  console.log("install Dataset !!!");
+
+  chrome.storage.sync.set({ "user_name" : "UserName" });
+  chrome.storage.sync.set({ "color" : "#3aa757" });
+}
 
 chrome.runtime.onInstalled.addListener(() => {
   console.log("background::chrome.runtime.onInstalled()");
-  chrome.storage.sync.set({ color });
+  installDataset();
+
+  let color = '#3aa757';
   console.log('Default background color set to %cgreen', `color: ${color}`);
 });
 chrome.runtime.onBrowserUpdateAvailable.addListener(() => {

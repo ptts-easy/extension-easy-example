@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="../css/button.css">
+    <meta charset="utf-8" />
+    <title>Extension Easy Example Option</title>    
+    <link rel="stylesheet" href="../assets/css/button.css">
+    <script src="../assets/lib/jquery-3.2.1.min.js"></script>
+    <script src="../assets/lib/bootstrap.min.js"></script>
+    <script src="../assets/lib/bootstrap-toggle.min.js"></script>    
   </head>
   <body>
-    <div id="buttonDiv">
+    <div>
+      <button id="optionBtnGetDataset">GetDataset</button>
+      <input id="optionInputSetDataset" placeholder="user_name" value="aaa">
+      <button id="optionBtnSetDataset">SetDataset</button>
     </div>
     <div>
-      <p>Choose a different background color!</p>
+      <button id="optionBtnDynamic">DynamicButtons</button>
+      <div id="optionDivDynamic">
+      </div>
+      <div>
+        <p>Choose a different background color!</p>
+      </div>
     </div>
-    <script src="../js/options.js"></script>
+    <div>
+      <p>Set Checkboxs!</p>
+      <input type="checkbox" id="optionIsCheck1" />Check 1
+      <input type="checkbox" id="optionIsCheck2" />Check 2
+      <input type="checkbox" id="optionIsCheck3" />Check 3
+    </div>
+    <div>
+      <p>Set Options!</p>
+      <select id="optionOptions">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+        <option value="4">Option 4</option>
+        <option value="5">Option 5</option>
+      </select>
+    </div>
+    <script src="../assets/js/options.js"></script>
   </body>
 </html>
