@@ -1,0 +1,114 @@
+.m-detail {
+    z-index: 21;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 0.6rem;
+}
+
+.m-detail table {
+    width: 100%;
+}
+
+.m-detail th,
+.m-detail td {
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: normal;
+}
+
+.m-detail td {
+    height: 18.4px;
+    letter-spacing: -0.5px;
+}
+
+.m-detail img {
+    margin: 0;
+    width: 1.1rem;
+}
+
+.m-detail button {
+    padding: 1px;
+    font-size: 0.6rem;
+    line-height: 0.7rem;
+}
+
+.m-icon {
+    color: #fb0;
+    font-size: 1.1rem;
+    line-height: 0.7;
+    vertical-align: middle;
+}
+
+.imageSearch {
+    position: absolute;
+    min-width: 34px;
+    min-height: 28px;
+    right: 10px;
+    bottom: 10px;
+    padding: 5px 8px;
+    border: 1px solid #000;
+    border-radius: 7px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+/**
+ * Theme
+ */
+
+.m-detail.t-black,
+.m-detail.t-black .selectSales option {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+}
+
+.m-detail.t-blue,
+.m-detail.t-blue .selectSales option {
+    background-color: rgba(65, 105, 225, 0.7);
+    color: #fff;
+}
+
+.m-detail.t-purple,
+.m-detail.t-purple .selectSales option {
+    background-color: rgba(186, 85, 211, 0.7);
+    color: #fff;
+}
+
+.m-detail.t-red,
+.m-detail.t-red .selectSales option {
+    background-color: rgba(255, 105, 180, 0.7);
+    color: #fff;
+}
+
+.m-detail.t-green,
+.m-detail.t-green .selectSales option {
+    background-color: rgba(0, 206, 209, 0.7);
+    color: #fff;
+}
+
+.m-detail.t-orange,
+.m-detail.t-orange .selectSales option {
+    background-color: rgba(255, 140, 0, 0.7);
+    color: #fff;
+}
+
+.selectSales {
+    border: none;
+    background: none;
+    color: white;
+}
+
+.getSales,
+.getList {
+    border-radius: 2px;
+    border: 1px;
+    padding: 2px 4px !important;
+    background: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}

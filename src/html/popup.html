@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="../css/button.css">
+    <link rel="stylesheet" href="../assets/css/button.css" />
+    <link rel="stylesheet" href="../assets/css/popup.css" />
   </head>
   <body>
-    <button id="popupChangePopupColor" onClick="clickChangePopupColor">changePopupColor</button>
-    <button id="popupAlertHomepage">alertHomepage</button>
-    <button id="popupInjectHomepage">injectHomepage</button>
-    <script src="../js/popup.js"></script>
+    <div>
+      <input id="popupInputUserName" placeholder="user_name" value="user_name">
+    </div>
+    <div>
+      <p>Get Checkboxs!</p>
+      <input type="checkbox" id="popupIsCheck1" />Check 1
+      <input type="checkbox" id="popupIsCheck2" />Check 2
+      <input type="checkbox" id="popupIsCheck3" />Check 3
+    </div>
+    <div>
+      <span>Get Options!</span>
+      <select id="popupOptions">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+        <option value="4">Option 4</option>
+        <option value="5">Option 5</option>
+      </select>
+    </div>
+    <button id="popupBtnAlertOnPopup">AlertOnPopup</button>
+    <button id="popupBtnChangePopupColor">ChangePopupColor</button>
+    <button id="popupBtnMsgBackground">MessageBackground</button>
+    <button id="popupBtnAlertOnWebpage">AlertOnWebpage</button>
+    <button id="popupBtnChangeWebpageColor">ChangeWebpageColor</button>
+    <button id="popupBtnMsgInjectedWebpage">MessageInjectedWebpage</button>
+    <button id="popupBtnInjectJavascript">InjectJavascript</button>
+    <button id="popupBtnTextOnBadge">TextOnBadge</button>
+    <button id="popupBtnNotification">Notification</button>
+    <button id="popupBtnAlarm">Alarm</button>
+    <script src="../assets/js/popup.js"></script>
   </body>
 </html>

@@ -3,16 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <title>Extension Easy Example Option</title>    
-    <link rel="stylesheet" href="../assets/css/button.css">
-    <script src="../assets/lib/jquery-3.2.1.min.js"></script>
-    <script src="../assets/lib/bootstrap.min.js"></script>
-    <script src="../assets/lib/bootstrap-toggle.min.js"></script>    
+    <link rel="stylesheet" href="/assets/css/button.css" />
+    <link rel="stylesheet" href="/assets/css/options.css" />    
+    <script src="/assets/lib/jquery-3.2.1.min.js"></script>
+    <script src="/assets/lib/bootstrap.min.js"></script>
+    <script src="/assets/lib/bootstrap-toggle.min.js"></script>
   </head>
   <body>
     <div>
-      <button id="optionBtnGetDataset">GetDataset</button>
-      <input id="optionInputSetDataset" placeholder="user_name" value="aaa">
-      <button id="optionBtnSetDataset">SetDataset</button>
+      <button id="optionBtnAlertOnOption">AlertOnOption</button>
+    </div>      
+    <div>
+      <button id="optionBtnGetUserName">GetUserName</button>
+      <input id="optionInputSetUserName" placeholder="user_name" value="aaa">
+      <button id="optionBtnSetUserName">SetUserName</button>
     </div>
     <div>
       <button id="optionBtnDynamic">DynamicButtons</button>
@@ -29,7 +33,7 @@
       <input type="checkbox" id="optionIsCheck3" />Check 3
     </div>
     <div>
-      <p>Set Options!</p>
+      <span>Set Options!</span>
       <select id="optionOptions">
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
@@ -38,6 +42,6 @@
         <option value="5">Option 5</option>
       </select>
     </div>
-    <script src="../assets/js/options.js"></script>
+    <script src="/assets/js/options.js"></script>
   </body>
 </html>

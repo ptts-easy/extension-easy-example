@@ -1,15 +1,18 @@
 {
-  "name": "Getting Started Example",
+  "name": "Extension Easy Example",
   "description": "Build an Extension!",
   "version": "1.0",
   "manifest_version": 3,
   "options_page": "./html/options.html",
   "permissions": [
+    "alarms",
+    "declarativeContent",
     "activeTab",
     "cookies",
     "debugger",             //chrome.debugger 
     "downloads",            //chrome.downloads
     "nativeMessaging",
+    "notifications",
     "scripting",            //chrome.scripting 
     "storage",              //chrome.storage
     "system.storage",       //chrome.system.storage
@@ -21,13 +24,34 @@
   "optional_permissions": [
   ],
   "host_permissions": [
-    "http://www.blogger.com/",
-    "http://*.google.com/"
+//    "http://www.blogger.com/",
+//    "http://*.google.com/"
+    "<all_urls>"
   ],
+  "omnibox": { "keyword" : "nt" },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "bg-wrapper.js"
+//    "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+//         "https://*/*",
+//         "http://*/*"
+      ],
+      "css": ["./assets/css/content.css"],
+      "js": ["./assets/js/content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources":["./assets/js/injected.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "action": {
+    "default_title": "Click to show an alert",
     "default_popup": "./html/popup.html",
     "default_icon": {
       "16": "./assets/images/get_started16.png",
