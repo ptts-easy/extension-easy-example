@@ -1,34 +1,19 @@
 
-function installDataset() {
-  console.log("install Dataset !!!");
-
-  chrome.storage.sync.set({ "user_name" : "UserName" });
-  chrome.storage.sync.set({ "color" : "#3aa757" });
-  chrome.storage.sync.set({ "check1" : "true" });
-  chrome.storage.sync.set({ "check2" : "false" });
-  chrome.storage.sync.set({ "check3" : "true" });
-  chrome.storage.sync.set({ "option" : 5 });
-}
-
-function openOptions() {
-  chrome.tabs.create({
-    url: 'html/options.html'
-  });
-}
+//=============================== events ===============================
 
 function messageProc(message, sender, sendResponse) {
   console.log("background::messageProc::", message, sender);
+
   if (message) {
     switch (message.type) {
       case 'background-message':
         console.log("background-message::", message.value);
         sendResponse(
           {
-            "type": "background-message",
-            "value": "Hello Popup! This is Background Response.",
+            "type": "background-message-response",
+            "value": "Hello Popup! This is Background Response."
           });
         return true;
-        break;
     }
   }
   return true;
@@ -37,17 +22,8 @@ function messageProc(message, sender, sendResponse) {
 //================================ chrome.runtime ==========================================
 chrome.runtime.onInstalled.addListener(() => {
   console.log("background::chrome.runtime.onInstalled()");
-
-  installDataset();
-//  openOptions();
-
-  chrome.storage.sync.get("user_name", ({ user_name }) => {
-    console.log('Default user name set to %s', user_name);
-  });
-
-  chrome.storage.sync.get("color", ({ color }) => {
-    console.log('Default background color set to %cgreen', `color: ${color}`);
-  });
+  
+  main();
 });
 chrome.runtime.onBrowserUpdateAvailable.addListener(() => {
   console.log("background::chrome.runtime.onBrowserUpdateAvailable()");
@@ -130,11 +106,90 @@ chrome.omnibox.onInputEntered.addListener((text) => {
 //  chrome.tabs.create({ url: newURL });
 });
 
-//================================ chrome.action ==========================================
+//================================ chrome.alarms ==========================================
 
-// Now add a function for when the alarm is triggered
 chrome.alarms.onAlarm.addListener((alarm) => {
   console.log("background::chrome.alarms.onAlarm()");
+  
+  alarmProc();
+});
+
+//================================ chrome.notifications ==========================================
+chrome.notifications.onButtonClicked.addListener(async () => {
+  console.log("background::chrome.notifications.onButtonClicked()");
+});
+
+//=============================== message ===============================
+
+function rtm(message, callback) {
+  if (callback) {
+    chrome.runtime.sendMessage(chrome.runtime.id, message, callback);
+  } else {
+    chrome.runtime.sendMessage(chrome.runtime.id, message);
+  }
+}
+
+async function tabm(message, callback) {
+  let queryOptions = { active: true, currentWindow: true };
+  let tab = await chrome.tabs.query(queryOptions);
+//  let queryOptions = { active: true, lastFocusedWindow: true };
+//  let [tab] = await chrome.tabs.query(queryOptions);
+
+  console.log(tab);
+
+  if (callback) {
+    chrome.tabs.sendMessage(tab[0].id, message, callback);
+  } else {
+    chrome.tabs.sendMessage(tab[0].id, message);
+  }
+}
+
+async function alltabm(message, callback) {
+  let queryOptions = { active: true, currentWindow: true };
+  let tabs = await chrome.tabs.query(queryOptions);
+
+  for (const tab of tabs) {
+    chrome.tabs
+      .sendMessage(tab.id, { type: "webpage-background-message", value: "Hello Webpage! This is Popup Messag to pass Background." })
+      .then((response) => {
+        console.log("Message from the content script:");
+      })
+      .catch(onError);
+  }
+}
+
+//=============================== init ===============================
+
+function installDataset() {
+  console.log("install Dataset !!!");
+
+  chrome.storage.sync.set({ "user_name" : "UserName" });
+  chrome.storage.sync.set({ "color" : "#3aa757" });
+  chrome.storage.sync.set({ "check1" : "true" });
+  chrome.storage.sync.set({ "check2" : "false" });
+  chrome.storage.sync.set({ "check3" : "true" });
+  chrome.storage.sync.set({ "option" : 5 });
+}
+
+function loadDataset() {
+  chrome.storage.sync.get("user_name", ({ user_name }) => {
+    console.log('Default user name set to %s', user_name);
+  });
+
+  chrome.storage.sync.get("color", ({ color }) => {
+    console.log('Default background color set to %cgreen', `color: ${color}`);
+  });
+}
+
+function setEventHandlers() {
+}
+
+function openOptions() {
+  chrome.tabs.create({
+    url: 'html/options.html'
+  });
+}
+function alarmProc() {
 
   var time = new Date().toLocaleString();
 
@@ -148,9 +203,13 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     ],
     priority: 0
   });
-});
+}
 
-// Notification
-chrome.notifications.onButtonClicked.addListener(async () => {
-  console.log("background::chrome.notifications.onButtonClicked()");
-});
+function main() {
+  console.log("background.js loaded on Popup panel !!!");
+  
+  installDataset();
+  loadDataset();
+  setEventHandlers();
+//  openOptions();
+}
